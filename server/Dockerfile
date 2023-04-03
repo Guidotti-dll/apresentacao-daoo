@@ -1,16 +1,14 @@
-FROM node:18
+FROM node:16
 
-RUN mkdir -p /home/node/app/node_modules
+RUN mkdir -p /home/node/app/server/node_modules
 
-WORKDIR /home/node/app/server
+WORKDIR /home/node/app/server/
 
 COPY package.json yarn.* ./
 
-# RUN npm i -g yarn
-
 RUN yarn
 
-COPY . /home/node/app/server
+COPY . /home/node/app/server/
 
 
 EXPOSE 3333
