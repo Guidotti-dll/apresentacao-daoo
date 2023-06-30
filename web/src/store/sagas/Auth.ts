@@ -8,14 +8,14 @@ import { clearCart } from '../ducks/Cart'
 export function* handleLogin({ payload }: ReturnType<typeof loginRequest>) {
   try {
     const { data } = yield call(api.post, '/sessions', payload)
-    api.defaults.headers.authorization = `Bearer ${data.token.token}`
-    yield sessionStorage.setItem('token', data.token.token)
+    api.defaults.headers.authorization = `Bearer ${data.token}`
+    yield sessionStorage.setItem('token', data.token)
     const user: User = {
       id: data.user.id,
       name: data.user.name,
       email: data.user.email,
     }
-    yield put(loginSuccess(user, data.token.token))
+    yield put(loginSuccess(user, data.token))
   } catch (error) {
     yield put(loginFailure(error.response.data.error.message))
   }
