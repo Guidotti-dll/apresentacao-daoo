@@ -14,7 +14,7 @@ export interface Type {
   color: string
   description: string
   range: number
-  'max-number': number
+  max_number: number
   price: number
-  'min-cart-value': number
+  min_cart_value: number
 }

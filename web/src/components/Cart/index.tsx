@@ -36,8 +36,10 @@ const Cart: React.FC<NewBetProps> = ({ types }) => {
     let minValue = 0
     bets.forEach(element => {
       const tempType = types.find(type => type.type === element.type)
-      if (tempType!['min-cart-value'] > minValue) {
-        minValue = tempType!['min-cart-value']
+      if (tempType!.min_cart_value
+ > minValue) {
+        minValue = tempType!.min_cart_value
+
       }
     })
     if (minValue > totalBetValue) {
