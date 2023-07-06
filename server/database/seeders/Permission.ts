@@ -142,6 +142,10 @@ export default class PermissionSeeder extends BaseSeeder {
           name: 'detachUser',
           slug: 'users-detach',
         },
+        {
+          name: 'usersShowBets',
+          slug: 'users-show-bets',
+        },
       ])
     }
   }

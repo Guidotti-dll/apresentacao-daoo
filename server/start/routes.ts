@@ -35,7 +35,7 @@ Route.group(() => {
   Route.put('users/:id/detach', 'UsersController.detach').as('users.detach')
   Route.put('roles/:id/attach', 'RolesController.attach').as('roles.attach')
   Route.put('roles/:id/detach', 'RolesController.detach').as('roles.detach')
-  Route.get('users/:use_id/bets', 'BetsController.showBetsByUser')
+  Route.get('users/:user_id/bets', 'BetsController.showBetsByPlayer').as('users.show.bets')
   Route.resource('permissions', 'PermissionsController').apiOnly()
   Route.resource('games', 'GamesController').apiOnly()
   Route.resource('bets', 'BetsController').apiOnly().paramFor('bets', 'bet')

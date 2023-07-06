@@ -125,8 +125,6 @@ export default class BetsController {
   public async show({ params, response, auth, bouncer }: HttpContextContract, bet: Bet) {
     // const betFind = await Bet.findBy('id', params.id)
 
-    console.log(bet)
-
     if (!bet) {
       return response.status(404).send({ error: { message: 'Bet not found' } })
     }
