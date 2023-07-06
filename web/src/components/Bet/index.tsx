@@ -51,6 +51,10 @@ const Bet: React.FC<NewBetProps> = ({ types }) => {
   }
 
   const addNumberHandler = (number: number) => {
+    console.log(selectedGame);
+
+
+
     if (isInArray(number)) {
       setSelectedNumbers(prevState =>
         prevState?.filter((numberInArray: number) => numberInArray !== number),
@@ -58,7 +62,7 @@ const Bet: React.FC<NewBetProps> = ({ types }) => {
     } else {
       if (
         selectedGame &&
-        selectedGame?.['max-number'] > selectedNumbers.length
+        selectedGame?.max_number > selectedNumbers.length
       ) {
         setSelectedNumbers(prevState => [...prevState, number])
       }
@@ -67,14 +71,14 @@ const Bet: React.FC<NewBetProps> = ({ types }) => {
 
   const completeGameHandler = () => {
     let tempArray = selectedNumbers
-    if (selectedGame?.['max-number'] === tempArray.length) {
+    if (selectedGame?.max_number === tempArray.length) {
       tempArray = []
     }
     if (!selectedGame) {
       toast.warn('Selecione um jogo antes para completa-lo')
       return
     }
-    while (selectedGame?.['max-number'] > tempArray.length) {
+    while (selectedGame?.max_number > tempArray.length) {
       const selectedNumber = getRandomIntInclusive(0, selectedGame?.range)
       const hasInArray = tempArray.some(item => {
         return item === selectedNumber
@@ -91,7 +95,7 @@ const Bet: React.FC<NewBetProps> = ({ types }) => {
       toast.warn('Selecione um jogo antes para adicionar-lo ao carrinho')
       return
     }
-    if (selectedGame!['max-number'] === selectedNumbers.length) {
+    if (selectedGame!.max_number === selectedNumbers.length) {
       const newBet: Game = {
         game_id: selectedGame.id,
         type: selectedGame!.type,
@@ -105,7 +109,7 @@ const Bet: React.FC<NewBetProps> = ({ types }) => {
     } else {
       toast.warn(
         `Escolha ${selectedNumbers.length === 0 ? '' : 'mais'} ${
-          selectedGame!['max-number'] - selectedNumbers.length
+          selectedGame!.max_number - selectedNumbers.length
         } números antes para adicionar o jogo ao carrilho`,
       )
     }

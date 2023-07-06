@@ -9,7 +9,7 @@ api.interceptors.request.use(
     const token = sessionStorage.getItem('token')
 
     config.headers = {
-      'Access-Control-Allow-Origin': ' localhost:3000',
+      'Access-Control-Allow-Origin': 'http://localhost:3000',
       Authorization: `Bearer ${token}`,
     }
     return config

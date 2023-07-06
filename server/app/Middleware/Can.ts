@@ -3,8 +3,6 @@ import WithoutPermissionException from 'App/Exceptions/WithoutPermissionExceptio
 
 export default class Can {
   public async handle({ route, bouncer }: HttpContextContract, next: () => Promise<void>) {
-    // code for middleware goes here. ABOVE THE NEXT CALL
-
     let permission = false
     const routePermission = route?.name?.replace(/[_\.]/g, '-')
     if (await bouncer.allows('Can', routePermission || '')) {

@@ -10,7 +10,7 @@ export const useTypes = () => {
     api
       .get('/games')
       .then(({ data }) => {
-        setTypes(data)
+        setTypes(data.data)
       })
       .catch(error => toast.error(error.message))
   }, [])

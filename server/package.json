@@ -45,6 +45,7 @@
     "@adonisjs/mail": "^7.2.3",
     "@adonisjs/redis": "^7.0.8",
     "@adonisjs/repl": "^3.0.0",
+    "@adonisjs/route-model-binding": "^1.0.1",
     "@adonisjs/view": "^6.0.8",
     "adonis5-scheduler": "^2.0.2",
     "crypto": "^1.0.1",

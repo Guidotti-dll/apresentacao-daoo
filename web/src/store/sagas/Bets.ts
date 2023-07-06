@@ -52,9 +52,9 @@ export function* handleGetBets({ payload }: ReturnType<typeof getBetsRequest>) {
       api.get,
       `/bets?page=${payload.page}`,
     )
-    console.log(+response.data.total)
 
-    if (+response.data.total > payload.total) {
+    if (+response.data.meta.total > payload.total) {
+
       const bets = response.data.data.map((bet: getBetRequest) => {
         return {
           type: bet.game.type,
@@ -66,6 +66,7 @@ export function* handleGetBets({ payload }: ReturnType<typeof getBetsRequest>) {
       })
 
       const page = bets.length < 20 ? payload.page : payload.page + 1
+
 
       yield put(getBetsSuccess(bets, page))
     }

@@ -30,7 +30,8 @@
     "@adonisjs/mail",
     "@adonisjs/view",
     "@adonisjs/bouncer",
-    "adonis5-scheduler"
+    "adonis5-scheduler",
+    "@adonisjs/route-model-binding/build/providers/RmbProvider"
   ],
   "aceProviders": [
     "@adonisjs/repl"

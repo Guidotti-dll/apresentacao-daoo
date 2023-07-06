@@ -3,6 +3,7 @@ import Mail from '@ioc:Adonis/Addons/Mail'
 import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import Database from '@ioc:Adonis/Lucid/Database'
 import { ModelPaginatorContract } from '@ioc:Adonis/Lucid/Orm'
+import { bind } from '@adonisjs/route-model-binding'
 import Bet from 'App/Models/Bet'
 import Game from 'App/Models/Game'
 import StoreBetValidator from 'App/Validators/StoreBetValidator'
@@ -35,6 +36,16 @@ export default class BetsController {
     }
 
     return bets
+  }
+
+  public async showBetsByPlayer({ request, params, bouncer }: HttpContextContract) {
+    const { page, perPage } = request.qs()
+    // if (await bouncer.allows('Can', 'bets-show-by-user')) {
+    return await Bet.query()
+      .where('user_id', params.user_id)
+      .preload('game')
+      .paginate(page, perPage)
+    // }
   }
 
   public async store({ request, response, auth }: HttpContextContract) {
@@ -110,8 +121,11 @@ export default class BetsController {
     return newBets
   }
 
-  public async show({ params, response, auth, bouncer }: HttpContextContract) {
-    const bet = await Bet.findBy('id', params.id)
+  @bind()
+  public async show({ params, response, auth, bouncer }: HttpContextContract, bet: Bet) {
+    // const betFind = await Bet.findBy('id', params.id)
+
+    console.log(bet)
 
     if (!bet) {
       return response.status(404).send({ error: { message: 'Bet not found' } })
